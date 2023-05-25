@@ -1,46 +1,34 @@
 package com.example.healthmate
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.healthmate.ui.theme.HealthMateTheme
+import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var editTextEmail: EditText
+    private lateinit var editTextPassword: EditText
+    private lateinit var buttonLogin: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            HealthMateTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
+        setContentView(R.layout.activity_main)
+
+        editTextEmail = findViewById(R.id.editTextEmail)
+        editTextPassword = findViewById(R.id.editTextPassword)
+        buttonLogin = findViewById(R.id.buttonLogin)
+
+        buttonLogin.setOnClickListener {
+            val email = editTextEmail.text.toString()
+            val password = editTextPassword.text.toString()
+
+            // TODO: Add your login logic here
+
+            // Example: Show a toast message with the login credentials
+            val message = "Email: $email\nPassword: $password"
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    HealthMateTheme {
-        Greeting("Android")
     }
 }
